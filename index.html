@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Detailing Services</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f5f5f5; }
+    header { background: #1a1a1a; color: #fff; padding: 20px; text-align: center; }
+    nav { display: flex; justify-content: center; gap: 20px; margin-top: 10px; }
+    nav a { color: white; text-decoration: none; font-weight: bold; }
+    .section { padding: 40px 20px; max-width: 1000px; margin: auto; }
+    .services { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+    .service-card { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    form { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    input, select, textarea { width: 100%; padding: 10px; margin: 10px 0; border-radius: 5px; border: 1px solid #ccc; }
+    button { padding: 12px 20px; background: #1a1a1a; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; }
+    button:hover { background: #333; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Premium Auto Detailing</h1>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#booking">Book Now</a>
+    </nav>
+  </header>
+
+  <section id="about" class="section">
+    <h2>About Us</h2>
+    <p>
+      We provide top-tier mobile auto detailing services with convenience and quality. Whether you need a quick wash or a full interior and exterior detail, we come to you!
+    </p>
+  </section>
+
+  <section id="services" class="section">
+    <h2>Our Services</h2>
+    <div class="services">
+      <div class="service-card">
+        <h3>Basic Wash</h3>
+        <p>Exterior wash, wheels cleaned, quick vacuum.</p>
+      </div>
+      <div class="service-card">
+        <h3>Full Interior</h3>
+        <p>Deep interior cleaning, shampooing, vacuuming, stain removal.</p>
+      </div>
+      <div class="service-card">
+        <h3>Full Detail</h3>
+        <p>Interior + exterior detail, polishing, and protective coating.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="booking" class="section">
+    <h2>Book an Appointment</h2>
+    <form>
+      <label>Name</label>
+      <input type="text" placeholder="Your Name" required />
+
+      <label>Phone</label>
+      <input type="text" placeholder="Your Phone Number" required />
+
+      <label>Service</label>
+      <select required>
+        <option value="Basic Wash">Basic Wash</option>
+        <option value="Full Interior">Full Interior</option>
+        <option value="Full Detail">Full Detail</option>
+      </select>
+
+      <label>Date</label>
+      <input type="date" required />
+
+      <label>Additional Notes</label>
+      <textarea placeholder="Anything we should know?"></textarea>
+
+      <button type="submit">Submit Booking</button>
+    </form>
+  </section>
+
+</body>
+</html>
