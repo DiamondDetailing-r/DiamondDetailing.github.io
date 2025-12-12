@@ -3,266 +3,260 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Detailing Services</title>
+  <title>Diamond Detailing</title>
   <style>
-    :root {
+    :root{
+      --bg: #0a0a0a;
+      --panel: #0f0f0f;
       --turquoise: #30d5c8;
-      --dark: #0f0f0f;
+      --muted: #bdbdbd;
     }
-    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f5f5f5; }
-    header { background: var(--turquoise); color: #fff; padding: 25px; text-align: center; }
-    nav { display: flex; justify-content: center; gap: 20px; margin-top: 10px; }
-    nav a { color: white; text-decoration: none; font-weight: bold; font-size: 18px; }
-    .section { padding: 50px 20px; max-width: 1100px; margin: auto; }
-    .services { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 25px; }
-    .service-card { background: white; padding: 25px; border-radius: 15px; border-top: 5px solid var(--turquoise); box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: transform .3s; }
-    .service-card:hover { transform: translateY(-5px); }
-    form { background: white; padding: 25px; border-radius: 15px; border-top: 5px solid var(--turquoise); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-    input, select, textarea { width: 100%; padding: 12px; margin: 12px 0; border-radius: 8px; border: 1px solid #ccc; }
-    button { padding: 14px 22px; background: var(--turquoise); color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 18px; font-weight: bold; }
-    button:hover { background: #2fb8ad; }
-    .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-    .gallery img { width: 100%; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.15); transition: transform .4s ease, opacity .6s; cursor: pointer; opacity: 0; }
-.gallery img.fade-in { opacity: 1; }
-.gallery img:hover { transform: scale(1.08); }
-    .contact-box { text-align: center; padding: 20px; background: var(--turquoise); color: white; border-radius: 12px; margin-top: 40px; font-size: 20px; font-weight: bold; }
-    .fade-in { opacity: 0; animation: fadeIn 1.2s forwards; }
-  @keyframes fadeIn { to { opacity: 1; } }
-  .review-box { background:white; padding:20px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.1); margin-bottom:20px; border-left:5px solid var(--turquoise); }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;background:var(--bg);color:white;font-family:Inter, system-ui, Arial, sans-serif}
+
+    header{position:sticky;top:0;z-index:999;background:linear-gradient(180deg, rgba(48,213,200,0.06), transparent);backdrop-filter:blur(6px);padding:18px 12px;border-bottom:1px solid rgba(255,255,255,0.03)}
+    .nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:16px}
+    .brand{display:flex;align-items:center;gap:14px}
+    .brand img{width:68px;height:68px;border-radius:50%;object-fit:cover;box-shadow:0 6px 18px rgba(0,0,0,0.6)}
+    h1.site-title{margin:0;font-size:20px;letter-spacing:0.6px}
+    nav{margin-left:auto;display:flex;gap:12px}
+    nav a{color:var(--muted);text-decoration:none;padding:8px 12px;border-radius:8px;font-weight:600}
+    nav a:hover{color:white;background:rgba(255,255,255,0.04)}
+
+    .hero{max-width:1100px;margin:26px auto;padding:28px;background:linear-gradient(180deg, rgba(48,213,200,0.02), rgba(255,255,255,0.01));border-radius:14px;border:1px solid rgba(255,255,255,0.03);display:flex;gap:20px;align-items:center}
+    .hero-left{flex:1}
+    .hero-right{width:320px}
+    .kicker{color:var(--turquoise);font-weight:800;letter-spacing:0.6px}
+    .hero p{color:var(--muted);margin-top:8px}
+    .cta-row{display:flex;gap:12px;margin-top:14px}
+    .btn{background:var(--turquoise);color:#021212;border:none;padding:12px 18px;border-radius:10px;font-weight:700;cursor:pointer}
+    .btn.secondary{background:transparent;color:var(--turquoise);border:1px solid rgba(48,213,200,0.15)}
+
+    .section{max-width:1100px;margin:30px auto;padding:0 16px}
+    h2{margin:0 0 14px 0}
+
+    .services{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+    .card{background:var(--panel);padding:18px;border-radius:12px;border-top:4px solid var(--turquoise);box-shadow:0 8px 30px rgba(0,0,0,0.6);transition:transform .28s}
+    .card:hover{transform:translateY(-6px)}
+    .price{color:var(--turquoise);font-weight:800;margin-top:8px}
+
+    form.book-form{background:var(--panel);padding:18px;border-radius:12px;border-top:4px solid var(--turquoise);}
+    label{display:block;color:var(--muted);font-weight:700;margin-top:10px}
+    input,select,textarea{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:white}
+
+    .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+    .gallery img{width:100%;height:180px;object-fit:cover;border-radius:12px;border:1px solid rgba(255,255,255,0.04);box-shadow:0 8px 20px rgba(0,0,0,0.6);transform:scale(1);transition:transform .35s ease,opacity .6s;opacity:0}
+    .gallery img.show{opacity:1}
+    .gallery img:hover{transform:scale(1.06)}
+
+    .reviews{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+    .review{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:14px;border-radius:10px;color:var(--muted)}
+
+    .contact-box{margin:26px auto;background:linear-gradient(90deg, rgba(48,213,200,0.04), transparent);padding:14px;border-radius:10px;text-align:center}
+
+    .map-container iframe{border-radius:12px;border:0;box-shadow:0 8px 30px rgba(0,0,0,0.6)}
+
+    .mobile-badge{position:fixed;right:18px;bottom:18px;background:var(--turquoise);color:#021212;padding:12px 16px;border-radius:999px;font-weight:800;display:flex;gap:10px;align-items:center;box-shadow:0 12px 30px rgba(0,0,0,0.6);z-index:9999}
+
+    footer{max-width:1100px;margin:40px auto;color:var(--muted);padding:0 16px}
+
+    /* lightbox */
+    #lightbox{display:none;position:fixed;inset:0;align-items:center;justify-content:center;background:rgba(0,0,0,0.86);z-index:10000}
+    #lightbox img{max-width:92%;max-height:86%;border-radius:12px}
+
+    @media (max-width:720px){.hero{flex-direction:column}.hero-right{width:100%}}
   </style>
 </head>
 <body>
-  <header style="background: var(--turquoise); position: sticky; top: 0; z-index: 999; display: flex; align-items: center; justify-content: center; flex-direction: column; padding-bottom: 15px;">
-    <img src="https://via.placeholder.com/120x120?text=Logo" alt="Diamond Detailing Logo" style="border-radius:50%; margin-bottom:10px; box-shadow:0 4px 10px rgba(0,0,0,0.2);">
-    <h1>Diamond Detailing</h1>
-    <nav>
-      <a href="#about">About</a>
-      <a href="#services">Services</a>
-      <a href="#booking">Book Now</a>
-    </nav>
+  <header>
+    <div class="nav-inner">
+      <div class="brand">
+        <img src="logo.png" alt="Diamond Detailing logo" />
+        <div>
+          <div class="kicker">Diamond Detailing</div>
+          <div style="font-size:12px;color:var(--muted)">Mobile Auto Detailing — We come to you</div>
+        </div>
+      </div>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#booking">Book</a>
+      </nav>
+    </div>
   </header>
 
-<style>
-  .pop-up { animation: popUp 0.9s ease-out; }
-  @keyframes popUp {
-    0% { transform: scale(0.85); opacity: 0; }
-    100% { transform: scale(1); opacity: 1; }
-  }
-  .mobile-badge {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: var(--turquoise);
-    color: white;
-    padding: 14px 22px;
-    border-radius: 50px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    font-weight: bold;
-    font-size: 18px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    z-index: 9999;
-  }
-  .mobile-badge img {
-    width: 26px;
-    filter: brightness(0) invert(1);
-  }
-</style>
-
+  <section class="hero">
+    <div class="hero-left">
+      <div class="kicker">Mobile · Premium · Convenient</div>
+      <h1 style="margin:8px 0 0 0">Diamond Detailing</h1>
+      <p style="margin-top:10px;color:var(--muted)">Serving Rock Hill, Fort Mill, Tega Cay, Charlotte (south), Pineville, Indian Land and surrounding areas. Professional exterior and interior detailing services with on-site convenience.</p>
+      <div class="cta-row">
+        <button class="btn" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">Book Now</button>
+        <a class="btn secondary" href="https://www.instagram.com/diamond_detailingrh/?igsh=MWEwMHd4YWd0N2Nsag%3D%3D&utm_source=qr#" target="_blank" style="text-decoration:none;display:inline-flex;align-items:center;">Follow on Instagram</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div style="background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:12px;border-radius:12px">
+        <strong style="color:var(--muted)">Contact</strong>
+        <div style="margin-top:6px;font-weight:800">(980) 349-5937</div>
+        <div style="margin-top:8px;color:var(--muted);font-size:14px">Tap the phone number on mobile to call</div>
+      </div>
+    </div>
+  </section>
 
   <section id="about" class="section">
     <h2>About Us</h2>
-    <p>
-      We provide top-tier mobile auto detailing services with convenience and quality. Whether you need a quick wash or a full interior and exterior detail, we come to you!
-    </p>
+    <p style="color:var(--muted)">Diamond Detailing delivers showroom results with mobile convenience. We use premium products, thorough processes, and careful attention to protect your vehicle and bring out the shine.</p>
   </section>
 
   <section id="services" class="section">
-    <h2>Our Services</h2>
-
-    <h3>Exterior Work</h3>
+    <h2>Services</h2>
     <div class="services">
-      <div class="service-card"><h4>Basic Exterior - $80</h4></div>
-      <div class="service-card"><h4>Supreme Exterior - $90</h4></div>
-      <div class="service-card"><h4>Headlight Restoration - $50</h4></div>
-    </div>
+      <div class="card">
+        <strong>Exterior Work</strong>
+        <div class="price">Basic Exterior — $80</div>
+        <div class="price">Supreme Exterior — $90</div>
+        <div class="price">Headlight Restoration — $50</div>
+      </div>
 
-    <h3>Interior Work</h3>
-    <div class="services">
-      <div class="service-card"><h4>Basic Interior - $90</h4></div>
-      <div class="service-card"><h4>Supreme Interior - $120</h4></div>
-    </div>
+      <div class="card">
+        <strong>Interior Work</strong>
+        <div class="price">Basic Interior — $90</div>
+        <div class="price">Supreme Interior — $120</div>
+      </div>
 
-    <h3>Enhancements</h3>
-    <div class="services">
-      <div class="service-card"><h4>Clay Bar - $90</h4></div>
-      <div class="service-card"><h4>Ceramic Spray - $115</h4></div>
-      <div class="service-card"><h4>Wax by Hand - $120</h4></div>
-    </div>
-  </section>
+      <div class="card">
+        <strong>Enhancements</strong>
+        <div class="price">Clay Bar — $90</div>
+        <div class="price">Ceramic Spray — $115</div>
+        <div class="price">Wax by Hand — $120</div>
+      </div>
 
-  <section id="booking" class="section">
-    <h2>Book an Appointment</h2>
-    <form onsubmit="event.preventDefault();
-  const name = this.querySelector('input[placeholder=\'Your Name\']').value;
-  const phone = this.querySelector('input[placeholder=\'Your Phone Number\']').value;
-  const service = this.querySelector('select').value;
-  const date = this.querySelector('input[type=date]').value;
-  const notes = this.querySelector('textarea').value;
-  const sms = `sms:9803495937?body=New Booking%0AName: ${name}%0APhone: ${phone}%0AService: ${service}%0ADate: ${date}%0ANotes: ${notes}`;
-  window.location.href = sms;
-">
-
-      <label>Name</label>
-      <input type="text" placeholder="Your Name" required />
-
-      <label>Phone</label>
-      <input type="text" placeholder="Your Phone Number" required />
-
-      <label>Service</label>
-      <select required>
-        <optgroup label="Exterior Work">
-          <option value="Basic Exterior $80">Basic Exterior - $80</option>
-          <option value="Supreme Exterior $90">Supreme Exterior - $90</option>
-          <option value="Headlight Restoration $50">Headlight Restoration - $50</option>
-        </optgroup>
-        <optgroup label="Interior Work">
-          <option value="Basic Interior $90">Basic Interior - $90</option>
-          <option value="Supreme Interior $120">Supreme Interior - $120</option>
-        </optgroup>
-        <optgroup label="Enhancements">
-          <option value="Clay Bar $90">Clay Bar - $90</option>
-          <option value="Ceramic Spray $115">Ceramic Spray - $115</option>
-          <option value="Wax by Hand $120">Wax by Hand - $120</option>
-        </optgroup>
-      </select>
-
-      <label>Date</label>
-      <input type="date" required />
-
-      <label>Additional Notes</label>
-      <textarea placeholder="Anything we should know?"></textarea>
-
-      <button type="submit">Submit Booking</button>
-    </form>
-  </section>
-
-  <section id="reviews" class="section fade-in">
-    <h2>Customer Reviews</h2>
-    <div class="review-box">
-      <p>“My car has never looked better! Amazing attention to detail.” — Sarah W.</p>
-    </div>
-    <div class="review-box">
-      <p>“Professional, fast, and the results were incredible.” — Jason R.</p>
-    </div>
-    <div class="review-box">
-      <p>“Five stars! Highly recommend Diamond Detailing.” — Maria L.</p>
     </div>
   </section>
 
   <section id="gallery" class="section">
     <h2>Gallery</h2>
     <div class="gallery">
-      <img src="gallery/IMG_8116.jpg" />
-      <img src="gallery/IMG_8117.jpg" />
-      <img src="gallery/IMG_8119.jpg" />
-      <img src="gallery/IMG_8098.jpg" />
-      <img src="gallery/IMG_8118.jpg" />
-      <img src="gallery/IMG_8097.jpg" />
-      <img src="gallery/IMG_8113.jpg" />
-      <img src="gallery/IMG_8103.jpg" />
+      <img data-src="gallery/IMG_8116.jpg" alt="detail 1" />
+      <img data-src="gallery/IMG_8117.jpg" alt="detail 2" />
+      <img data-src="gallery/IMG_8119.jpg" alt="detail 3" />
+      <img data-src="gallery/IMG_8098.jpg" alt="detail 4" />
+      <img data-src="gallery/IMG_8118.jpg" alt="detail 5" />
+      <img data-src="gallery/IMG_8097.jpg" alt="detail 6" />
+      <img data-src="gallery/IMG_8113.jpg" alt="detail 7" />
+      <img data-src="gallery/IMG_8103.jpg" alt="detail 8" />
     </div>
   </section>
 
-  <section id="service-area" class="section fade-in pop-up" class="section fade-in">
-  <h2>Service Area</h2>
-  <p>We proudly serve the following areas:</p>
-  <ul>
-    <li>Rock Hill</li>
-    <li>Tega Cay</li>
-    <li>Fort Mill</li>
-    <li>Charlotte</li>
-    <li>Pineville</li>
-    <li>Catawba</li>
-    <li>Indian Land</li>
-    <li>Newport</li>
-    <li>Lake Wylie</li>
-    <li>Baxter Village</li>
-    <li>India Hook</li>
-  </ul>
-</section>
+  <section id="booking" class="section">
+    <h2>Book an Appointment</h2>
+    <form class="book-form" onsubmit="event.preventDefault();
+      const name=this.querySelector('input[name=name]').value;
+      const phone=this.querySelector('input[name=phone]').value;
+      const service=this.querySelector('select[name=service]').value;
+      const date=this.querySelector('input[name=date]').value;
+      const notes=this.querySelector('textarea[name=notes]').value;
+      const sms = `sms:9803495937?body=New Booking%0AName:%20${encodeURIComponent(name)}%0APhone:%20${encodeURIComponent(phone)}%0AService:%20${encodeURIComponent(service)}%0ADate:%20${encodeURIComponent(date)}%0ANotes:%20${encodeURIComponent(notes)}`;
+      window.location.href = sms;
+    ">
 
-<section id="service-map" class="section fade-in pop-up" class="section fade-in">
-  <h2>Service Area Map</h2>
-  <p>Here’s a map showing the general area we service:</p>
-  <iframe
-    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d330853.2399046724!2d-81.326739!3d35.043751!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88569f4c6b0c1b87%3A0x8f5e2c93b4bc1d57!2sRock%20Hill%2C%20SC!5e0!3m2!1sen!2sus!4v1700000000000"
-    width="100%"
-    height="400"
-    style="border:0; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.2);"
-    allowfullscreen=""
-    loading="lazy"
-    referrerpolicy="no-referrer-when-downgrade"></iframe>
-</section>
+      <label>Name</label>
+      <input name="name" placeholder="Full Name" required />
 
-<section id="socials" class="section fade-in" style="text-align:center;">
-  <h2>Connect With Us</h2>
-  <a href="https://www.instagram.com/diamond_detailingrh/?igsh=MWEwMHd4YWd0N2Nsag%3D%3D&utm_source=qr#" target="_blank" style="
-    background: var(--turquoise);
-    color: white;
-    padding: 14px 28px;
-    border-radius: 50px;
-    font-size: 20px;
-    font-weight: bold;
-    text-decoration: none;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;">
-    <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" style="width:24px; filter:brightness(0) invert(1);" />
-    Follow us on Instagram
-  </a>
-</section>
+      <label>Phone</label>
+      <input name="phone" placeholder="Phone Number" required />
 
-<div class="contact-box">
-    Contact Us Anytime: <a href="tel:9803495937" style="color:white; text-decoration:underline;">(980) 349-5937</a>
+      <label>Service</label>
+      <select name="service" required>
+        <optgroup label="Exterior Work">
+          <option>Basic Exterior - $80</option>
+          <option>Supreme Exterior - $90</option>
+          <option>Headlight Restoration - $50</option>
+        </optgroup>
+        <optgroup label="Interior Work">
+          <option>Basic Interior - $90</option>
+          <option>Supreme Interior - $120</option>
+        </optgroup>
+        <optgroup label="Enhancements">
+          <option>Clay Bar - $90</option>
+          <option>Ceramic Spray - $115</option>
+          <option>Wax by Hand - $120</option>
+        </optgroup>
+      </select>
+
+      <label>Date</label>
+      <input type="date" name="date" required />
+
+      <label>Additional Notes</label>
+      <textarea name="notes" placeholder="Anything we should know? (optional)"></textarea>
+
+      <div style="margin-top:12px;display:flex;gap:12px">
+        <button class="btn" type="submit">Send Booking (SMS)</button>
+        <button class="btn secondary" type="button" onclick="window.location.href='tel:9803495937'">Call Now</button>
+      </div>
+    </form>
+  </section>
+
+  <section id="service-area" class="section">
+    <h2>Service Area</h2>
+    <p style="color:var(--muted)">We proudly serve Rock Hill, Tega Cay, Fort Mill, Charlotte (south), Pineville, Catawba, Indian Land, Newport, Lake Wylie, Baxter Village and India Hook.</p>
+    <div class="map-container" style="margin-top:12px">
+      <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d330853.2399046724!2d-81.326739!3d35.043751!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88569f4c6b0c1b87%3A0x8f5e2c93b4bc1d57!2sRock%20Hill%2C%20South%20Carolina!5e0!3m2!1sen!2sus!4v1733965000000" 
+        width="100%" 
+        height="420" 
+        loading="lazy"></iframe>
+    </div>
+  </section>
+
+  <section id="reviews" class="section">
+    <h2>Reviews</h2>
+    <div class="reviews">
+      <div class="review">“My car has never looked better! Amazing attention to detail.” — Sarah W.</div>
+      <div class="review">“Professional, fast, and the results were incredible.” — Jason R.</div>
+      <div class="review">“Five stars! Highly recommend Diamond Detailing.” — Maria L.</div>
+    </div>
+  </section>
+
+  <div class="contact-box">
+    <strong>Contact:</strong> <a href="tel:9803495937" style="color:var(--turquoise);text-decoration:underline">(980) 349-5937</a>
   </div>
 
-  <div class="mobile-badge">
-    <img src="https://cdn-icons-png.flaticon.com/512/597/597177.png" />
-    We Come To You!
-  </div>
+  <div class="mobile-badge" onclick="window.location.href='tel:9803495937'">📞 Call — We Come To You!</div>
 
-  <div id="lightbox" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); justify-content:center; align-items:center; z-index:999999;">
-    <img id="lightbox-img" src="" style="max-width:90%; max-height:90%; border-radius:15px; box-shadow:0 0 25px rgba(255,255,255,0.4);" />
-  </div>
+  <div id="lightbox"><img src="" alt="expanded image"/></div>
+
+  <footer>
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+      <div>© Diamond Detailing</div>
+      <div><a href="https://www.instagram.com/diamond_detailingrh/?igsh=MWEwMHd4YWd0N2Nsag%3D%3D&utm_source=qr#" target="_blank" style="color:var(--turquoise);text-decoration:none">Instagram</a></div>
+    </div>
+  </footer>
 
   <script>
-    const imgs = document.querySelectorAll('.gallery img');
-    const lightbox = document.getElementById('lightbox');
-    const lightImg = document.getElementById('lightbox-img');
+    // Lazy-load gallery images + fade-in + lightbox
+    document.addEventListener('DOMContentLoaded',()=>{
+      const imgs = Array.from(document.querySelectorAll('.gallery img'));
+      imgs.forEach(img=>{
+        img.src = img.getAttribute('data-src');
+        img.addEventListener('load',()=>{img.classList.add('show')});
 
-    imgs.forEach(img => {
-      img.addEventListener('click', () => {
-        lightImg.src = img.src;
-        lightbox.style.display = 'flex';
+        img.addEventListener('click',()=>{
+          const lb = document.getElementById('lightbox');
+          lb.style.display='flex';
+          lb.querySelector('img').src = img.src;
+        });
       });
 
-      // fade-in on scroll
-      const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('fade-in');
-          }
-        });
-      }, { threshold: 0.2 });
+      // Intersection observer for fade-in (in case images load late)
+      const observer = new IntersectionObserver(entries=>{
+        entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('show');observer.unobserve(entry.target)}});
+      },{threshold:0.15});
+      imgs.forEach(i=>observer.observe(i));
 
-      observer.observe(img);
-    });
-
-    lightbox.addEventListener('click', () => {
-      lightbox.style.display = 'none';
+      document.getElementById('lightbox').addEventListener('click',e=>{if(e.target.id==='lightbox' || e.target.tagName==='IMG') document.getElementById('lightbox').style.display='none'});
     });
   </script>
 </body>
