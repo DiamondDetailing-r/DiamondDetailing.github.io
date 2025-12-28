@@ -139,14 +139,14 @@
   <section id="gallery" class="section">
     <h2>Gallery</h2>
     <div class="gallery">
-      <img data-src="gallery/IMG_8116.jpg" alt="detail 1" />
-      <img data-src="gallery/IMG_8117.jpg" alt="detail 2" />
-      <img data-src="gallery/IMG_8119.jpg" alt="detail 3" />
-      <img data-src="gallery/IMG_8098.jpg" alt="detail 4" />
-      <img data-src="gallery/IMG_8118.jpg" alt="detail 5" />
-      <img data-src="gallery/IMG_8097.jpg" alt="detail 6" />
-      <img data-src="gallery/IMG_8113.jpg" alt="detail 7" />
-      <img data-src="gallery/IMG_8103.jpg" alt="detail 8" />
+      <img data-src="gallery/img_8116.jpg" alt="detail 1" />
+      <img data-src="gallery/img_8117.jpg" alt="detail 2" />
+      <img data-src="gallery/img_8119.jpg" alt="detail 3" />
+      <img data-src="gallery/img_8098.jpg" alt="detail 4" />
+      <img data-src="gallery/img_8118.jpg" alt="detail 5" />
+      <img data-src="gallery/img_8097.jpg" alt="detail 6" />
+      <img data-src="gallery/img_8113.jpg" alt="detail 7" />
+      <img data-src="gallery/img_8103.jpg" alt="detail 8" />
     </div>
   </section>
 
@@ -235,61 +235,64 @@
     </div>
   </footer>
 
-  <script>
-    // Lazy-load gallery images + fade-in + lightbox
-    document.addEventListener('DOMContentLoaded',()=>{
-      const imgs = Array.from(document.querySelectorAll('.gallery img'));
-      imgs.forEach(img=>{
-        img.src = img.getAttribute('data-src');
-        img.addEventListener('load',()=>{img.classList.add('show')});
+ <script>
+document.addEventListener('DOMContentLoaded', () => {
+  const imgs = document.querySelectorAll('.gallery img');
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = lightbox.querySelector('img');
 
-        <script>
-  document.addEventListener('DOMContentLoaded',()=>{
-    const imgs = Array.from(document.querySelectorAll('.gallery img'));
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = lightbox.querySelector('img');
+  imgs.forEach(img => {
+    // load image
+    img.src = img.dataset.src;
 
-    imgs.forEach(img=>{
-      // load image
-      img.src = img.dataset.src;
-
-      // fade-in when loaded
-      img.addEventListener('load',()=>{
-        img.classList.add('show');
-      });
-
-      // open lightbox
-      img.addEventListener('click',()=>{
-        lightbox.style.display = 'flex';
-        lightboxImg.src = img.src;
-      });
+    // fade in
+    img.addEventListener('load', () => {
+      img.classList.add('show');
     });
 
-    // close lightbox
-    lightbox.addEventListener('click',e=>{
-      if(e.target === lightbox || e.target.tagName === 'IMG'){
-        lightbox.style.display = 'none';
-        lightboxImg.src = '';
-      }
+    // open lightbox
+    img.addEventListener('click', () => {
+      lightbox.style.display = 'flex';
+      lightboxImg.src = img.src;
     });
   });
+
+  // close lightbox
+  lightbox.addEventListener('click', e => {
+    if (e.target === lightbox || e.target.tagName === 'IMG') {
+      lightbox.style.display = 'none';
+      lightboxImg.src = '';
+    }
+  });
+});
+</script>
+  <script>
+document.addEventListener('DOMContentLoaded', () => {
+  const imgs = document.querySelectorAll('.gallery img');
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = lightbox.querySelector('img');
+
+  imgs.forEach(img => {
+    img.src = img.dataset.src;
+
+    img.addEventListener('load', () => {
+      img.classList.add('show');
+    });
+
+    img.addEventListener('click', () => {
+      lightbox.style.display = 'flex';
+      lightboxImg.src = img.src;
+    });
+  });
+
+  lightbox.addEventListener('click', e => {
+    if (e.target === lightbox || e.target.tagName === 'IMG') {
+      lightbox.style.display = 'none';
+      lightboxImg.src = '';
+    }
+  });
+});
 </script>
 
-        img.addEventListener('click',()=>{
-          const lb = document.getElementById('lightbox');
-          lb.style.display='flex';
-          lb.querySelector('img').src = img.src;
-        });
-      });
-
-      // Intersection observer for fade-in (in case images load late)
-      const observer = new IntersectionObserver(entries=>{
-        entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('show');observer.unobserve(entry.target)}});
-      },{threshold:0.15});
-      imgs.forEach(i=>observer.observe(i));
-
-      document.getElementById('lightbox').addEventListener('click',e=>{if(e.target.id==='lightbox' || e.target.tagName==='IMG') document.getElementById('lightbox').style.display='none'});
-    });
-  </script>
 </body>
 </html>
