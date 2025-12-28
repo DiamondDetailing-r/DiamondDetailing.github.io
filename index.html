@@ -266,33 +266,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 </script>
-  <script>
-document.addEventListener('DOMContentLoaded', () => {
-  const imgs = document.querySelectorAll('.gallery img');
-  const lightbox = document.getElementById('lightbox');
-  const lightboxImg = lightbox.querySelector('img');
-
-  imgs.forEach(img => {
-    img.src = img.dataset.src;
-
-    img.addEventListener('load', () => {
-      img.classList.add('show');
-    });
-
-    img.addEventListener('click', () => {
-      lightbox.style.display = 'flex';
-      lightboxImg.src = img.src;
-    });
-  });
-
-  lightbox.addEventListener('click', e => {
-    if (e.target === lightbox || e.target.tagName === 'IMG') {
-      lightbox.style.display = 'none';
-      lightboxImg.src = '';
-    }
-  });
-});
-</script>
-
+  
 </body>
 </html>
