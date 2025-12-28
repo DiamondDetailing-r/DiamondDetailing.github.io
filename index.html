@@ -243,7 +243,38 @@
         img.src = img.getAttribute('data-src');
         img.addEventListener('load',()=>{img.classList.add('show')});
 
-        <img data-src="gallery/img_8116.jpg">
+        <script>
+  document.addEventListener('DOMContentLoaded',()=>{
+    const imgs = Array.from(document.querySelectorAll('.gallery img'));
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = lightbox.querySelector('img');
+
+    imgs.forEach(img=>{
+      // load image
+      img.src = img.dataset.src;
+
+      // fade-in when loaded
+      img.addEventListener('load',()=>{
+        img.classList.add('show');
+      });
+
+      // open lightbox
+      img.addEventListener('click',()=>{
+        lightbox.style.display = 'flex';
+        lightboxImg.src = img.src;
+      });
+    });
+
+    // close lightbox
+    lightbox.addEventListener('click',e=>{
+      if(e.target === lightbox || e.target.tagName === 'IMG'){
+        lightbox.style.display = 'none';
+        lightboxImg.src = '';
+      }
+    });
+  });
+</script>
+
         img.addEventListener('click',()=>{
           const lb = document.getElementById('lightbox');
           lb.style.display='flex';
